@@ -2,8 +2,8 @@ const postContainer = document.getElementById("post-container");
 const loading = document.querySelector(".loader");
 const filter = document.getElementById("filter");
 
-let limit = 3;
-let page = 2;
+let limit = 5;
+let page = 1;
 
 // Fetch post from API
 async function getPosts() {
@@ -35,5 +35,28 @@ async function showPost() {
   });
 }
 
+//Show loader & fetch more posts
+function showLoading() {
+  loading.classList.add("show");
+
+  setTimeout(() => {
+    loading.classList.remove("show");
+
+    setTimeout(() => {
+      page++;
+      showPost();
+    }, 300);
+  }, 1000);
+}
+
 //Show initial post
 showPost();
+
+window.addEventListener("scroll", () => {
+  const { scrollTop, scrollHeight, clientHeight } =
+  document.documentElement;
+
+  if (scrollTop + clientHeight >= scrollHeight - 5) {
+    showLoading()
+  }
+});
