@@ -58,7 +58,7 @@ h1 {
   margin-left: 20px;
 }
 
-.post.number {
+.post .number {
   position: absolute;
   top: -15px;
   left: -15px;
